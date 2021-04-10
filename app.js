@@ -22,21 +22,37 @@ const logTodos = () => {
   console.log(arrayOfTodos)
 }
 
+
 const populateTodos = () => {
-  const ol = document.getElementById('todo-list');
-
-  for (let index = 0; index < arrayOfTodos.length; index++) { 
-    const li = document.createElement("li")
-
-    const title = arrayOfTodos[index].title
-
-    const listItemText = document.createTextNode(title);
-
-    li.appendChild(listItemText)
-
-    document.body.insertBefore(li, ol)
-
-    // const element = arrayOfTodos[index];
-    // console.log('element:', element)
+  for(i=0; i < (arrayOfTodos.length)/10; i++) {
+  const list = document.getElementById('todo-list')
+  const listItem = document.createElement('li')
+  const task = document.createTextNode(arrayOfTodos[i].title)
+  listItem.appendChild(task)
+  list.appendChild(listItem)
+  if (arrayOfTodos[i].completed === false) {
+    listItem.style.color = "red"
+  } else {
+    listItem.style.color = "green"
   }
   }
+  }
+
+  const fetchbyID = () => {
+    console.log("!!!!!")
+    document.getElementById('todo-list').innerHTML = ""
+    var userIdFilterInput = document.getElementById("userID").value
+
+    console.log(userIdFilterInput)
+
+   console.log(arrayOfTodos)
+   filteredArrayOfTodos = arrayOfTodos.filter((singleTodo) => {
+      return singleTodo.userId = userIdFilterInput
+    });
+    console.log(filteredArrayOfTodos)
+    
+    
+
+  }
+
+
